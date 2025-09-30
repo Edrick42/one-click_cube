@@ -1,0 +1,58 @@
+object FrmMain: TFrmMain
+  Left = 0
+  Top = 0
+  Caption = 'Main'
+  ClientHeight = 304
+  ClientWidth = 407
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object edtX: TcxTextEdit
+    Left = 28
+    Top = 24
+    TabOrder = 0
+    Width = 121
+  end
+  object edtY: TcxTextEdit
+    Left = 28
+    Top = 64
+    TabOrder = 1
+    Width = 121
+  end
+  object edtZ: TcxTextEdit
+    Left = 28
+    Top = 112
+    TabOrder = 2
+    Width = 121
+  end
+  object cxLabel1: TcxLabel
+    Left = 8
+    Top = 25
+    Caption = 'X:'
+  end
+  object cxLabel2: TcxLabel
+    Left = 8
+    Top = 65
+    Caption = 'Y:'
+  end
+  object cxLabel3: TcxLabel
+    Left = 8
+    Top = 113
+    Caption = 'Z:'
+  end
+  object btnCreateCube: TcxButton
+    Left = 28
+    Top = 160
+    Width = 101
+    Height = 25
+    Caption = 'Create a Cube'
+    TabOrder = 6
+    OnClick = btnCreateCubeClick
+  end
+end

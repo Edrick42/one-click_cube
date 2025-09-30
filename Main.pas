@@ -1,0 +1,70 @@
+unit Main;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls, cxLookAndFeels,
+  cxLookAndFeelPainters, cxContainer, cxEdit, cxLabel, cxTextEdit, Vcl.Menus,
+  Vcl.StdCtrls, cxButtons, Math, cxMemo;
+
+type
+  TFrmMain = class(TForm)
+    edtX: TcxTextEdit;
+    edtY: TcxTextEdit;
+    edtZ: TcxTextEdit;
+    cxLabel1: TcxLabel;
+    cxLabel2: TcxLabel;
+    cxLabel3: TcxLabel;
+    btnCreateCube: TcxButton;
+    edtMemoListOfCubes: TcxMemo;
+    procedure btnCreateCubeClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmMain: TFrmMain;
+
+implementation
+
+uses
+  Cube;
+
+{$R *.dfm}
+
+procedure TFrmMain.btnCreateCubeClick(Sender: TObject);
+var
+  tX: Integer;
+  tY: Integer;
+  tZ: Integer;
+
+  i: Integer;
+begin
+  edtMemoListOfCubes.Clear;
+
+  tX := StrToIntDef(Trim(edtX.Text), 1);
+  tY := StrToIntDef(Trim(edtY.Text), 1);
+  tZ := StrToIntDef(Trim(edtZ.Text), 1);
+
+  with TCube.create(tX, tY, tZ).Ref do
+  begin
+    toFillRandom();
+
+    edtMemoListOfCubes.Lines.Add('The volume is: ' + IntToStr(Volume));
+
+    for i := 0 to ListOfFilledCubes.Count - 1 do
+    begin
+      edtMemoListOfCubes.Lines.Add(
+        'Random value: ' + IntToStr(ListOfFilledCubes[i].value) + ' | ' +
+        'coordinates: (' +
+          'x:' + IntToStr(ListOfFilledCubes[i].x) +
+          ', y:' + IntToStr(ListOfFilledCubes[i].y) +
+          ', z:' + IntToStr(ListOfFilledCubes[i].z) + ')');
+    end;
+  end;
+end;
+
+end.
